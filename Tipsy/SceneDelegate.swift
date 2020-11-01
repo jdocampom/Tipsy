@@ -13,7 +13,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 // MARK: Variables
 
     var window: UIWindow?
-
+    
 // MARK: Methods
 
     /// Tag: willConnectTo()
