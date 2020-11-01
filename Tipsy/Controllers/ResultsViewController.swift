@@ -9,13 +9,13 @@
 import UIKit
 
 class ResultsViewController: UIViewController {
-
+    
 // MARK: IB-Outlets
     
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var settingsLabel: UILabel!
     
-// MARK: Variables
+// MARK: Variables 
     
     var result = "0.0"
     var tip = 10

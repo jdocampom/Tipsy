@@ -9,7 +9,7 @@
 import UIKit
 
 class CalculatorViewController: UIViewController {
-
+    
 // MARK: IB-Outlets
 
     @IBOutlet weak var billTextField: UITextField!
@@ -25,6 +25,18 @@ class CalculatorViewController: UIViewController {
     var billTotal = 0.0
     var finalResult = "0.0"
     
+// MARK: Methods
+    
+    /// Tag: prepareForSegue()
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToResults" {
+            let destinationVC = segue.destination as! ResultsViewController
+            destinationVC.result = finalResult
+            destinationVC.tip = Int(tip * 100)
+            destinationVC.split = numberOfPeople
+        }
+    }
+    
 // MARK: IB-Actions
     
     /// Tag: tipChanged()
@@ -37,7 +49,7 @@ class CalculatorViewController: UIViewController {
         let buttonTitle = sender.currentTitle!
         let buttonTitleMinusPercentSign =  String(buttonTitle.dropLast())
         let buttonTitleAsANumber = Double(buttonTitleMinusPercentSign)!
-        tip = buttonTitleAsANumber / 10
+        tip = buttonTitleAsANumber / 100
     }
     
     /// Tag: stepperValueChanged()
@@ -55,17 +67,5 @@ class CalculatorViewController: UIViewController {
             finalResult = String(format: "%.2f", result)
         }
         self.performSegue(withIdentifier: "goToResults", sender: self)
-    }
-    
-// MARK: Methods
-    
-    /// Tag: prepareForSegue()
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "goToResults" {
-            let destinationVC = segue.destination as! ResultsViewController
-            destinationVC.result = finalResult
-            destinationVC.tip = Int(tip * 100)
-            destinationVC.split = numberOfPeople
-        }
     }
 }
